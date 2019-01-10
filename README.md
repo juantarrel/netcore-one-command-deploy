@@ -1,0 +1,1 @@
+# netcore-one-command-deploy
