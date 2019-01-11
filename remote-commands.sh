@@ -70,8 +70,18 @@ function pullProject {
     dotnet run 
 
     echo "Creating binary"
+
+    cd ../LoyaltyAPI
     dotnet publish -o awssite
 
-    sudo cp -vnpr awssite ../:x!
+    if [ -d ~/Projects/awssite ]; then
+        sudo rm -R ~/Projects/awssite
+    fi
+
+    sudo cp -r awssite ../../
+
+    echo "Restarting service..."
+    sudo systemctl stop my-web-api.service
+    sudo systemctl start my-web-api.service
 
 }
